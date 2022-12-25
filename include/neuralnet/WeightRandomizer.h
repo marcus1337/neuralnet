@@ -2,12 +2,12 @@
 #ifndef WEIGHTRANDOMIZER_H
 #define WEIGHTRANDOMIZER_H
 
-#include "NetworkData.h"
+#include <vector>
 #include <random>
 
 namespace neuralnet {
     class WeightRandomizer {
-        NetworkData& networkData;
+        std::vector<float>& weights;
         std::mt19937 rng;
         std::random_device randDevice;
         float getRandomWeight();
@@ -16,7 +16,7 @@ namespace neuralnet {
         int getWeightIndicesSubsetSize();
 
     public:
-        WeightRandomizer(NetworkData& _networkData);
+        WeightRandomizer(std::vector<float>& _weights);
         void radomize();
         void randomizeSubset();
 

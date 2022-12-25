@@ -4,19 +4,17 @@
 
 namespace neuralnet {
 
-    WeightRandomizer::WeightRandomizer(NetworkData& _networkData) : networkData(_networkData) {
+    WeightRandomizer::WeightRandomizer(std::vector<float>& _weights) : weights(_weights) {
         rng.seed(randDevice());
     }
 
     void WeightRandomizer::radomize() {
-        auto& weights = networkData.weights;
         for (int i = 0; i < weights.size(); i++) {
             weights[i] = getRandomWeight();
         }
     }
 
     void WeightRandomizer::randomizeSubset() {
-        auto& weights = networkData.weights;
         for (int weightIndex : getWeightIndicesSubset()) {
             weights[weightIndex] = getRandomWeight();
         }
@@ -31,19 +29,18 @@ namespace neuralnet {
     }
 
     int WeightRandomizer::getWeightIndicesSubsetSize() {
-        int maxSize = std::max<int>(networkData.weights.size(), 4);
-        int minSize = std::min<int>(1, maxSize);
-        std::uniform_int_distribution<int> distribution(minSize, maxSize);
+        int maxSize = std::min<int>(3, weights.size());
+        std::uniform_int_distribution<int> distribution(0, maxSize);
         return distribution(rng);
     }
 
     float WeightRandomizer::getRandomWeight() {
-        std::uniform_real_distribution<float> distribution(0.f, 1.f);
+        std::uniform_real_distribution<float> distribution(-1.f, 1.f);
         return distribution(rng);
     }
 
     int WeightRandomizer::getRandomWeightIndex() {
-        std::uniform_int_distribution<int> distribution(0, networkData.weights.size());
+        std::uniform_int_distribution<int> distribution(0, weights.size());
         return distribution(rng);
     }
 

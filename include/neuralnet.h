@@ -4,22 +4,21 @@
 
 #include <string>
 #include <vector>
-#include "neuralnet/NetworkData.h"
+#include "neuralnet/Layer.h"
 
 namespace neuralnet {
 
     class NeuralNet {
-        NetworkData networkData;
-
+        std::vector<Layer> layers;
+        Layer& inputLayer();
     public:
-
-        NeuralNet(int numInputNodes, int numOutputNodes);
-        std::string serializeToString();
-        void deserializeFromString(std::string serializedNeuralNet);
-        int predict(std::vector<float> inputValues);
+        NeuralNet(int numInputNodes, int numHiddenNodes, int numOutputNodes);
+        NeuralNet(const std::string& serializedLayers);
+        std::string encode();
+        int getOutput(std::vector<float> inputValues);
         void randomizeWeightSubset();
-
-
+        int getNumLayers();
+        std::vector<float> getInWeights(int layerIndex);
     };
 
 }

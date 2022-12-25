@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.10)
 project(neuralnetlib)
 set(CMAKE_CXX_STANDARD 20)
 
-add_library(${PROJECT_NAME} STATIC "src/neuralnet.cpp" "src/WeightRandomizer.cpp")
+add_library(${PROJECT_NAME} STATIC "src/neuralnet.cpp" "src/WeightRandomizer.cpp" "src/NetworkCodec.cpp" "src/Layer.cpp" "src/Node.cpp")
 
 target_include_directories(${PROJECT_NAME}
   PUBLIC
