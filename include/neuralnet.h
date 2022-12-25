@@ -4,11 +4,12 @@
 
 #include <string>
 #include <vector>
+#include "neuralnet/NetworkData.h"
 
 namespace neuralnet {
 
     class NeuralNet {
-        std::vector<float> weights, inputNodes, outputNodes;
+        NetworkData networkData;
 
     public:
 
