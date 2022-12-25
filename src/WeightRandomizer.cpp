@@ -8,14 +8,14 @@ namespace neuralnet {
         rng.seed(randDevice());
     }
 
-    void WeightRandomizer::radomizeAll() {
+    void WeightRandomizer::radomize() {
         auto& weights = networkData.weights;
         for (int i = 0; i < weights.size(); i++) {
             weights[i] = getRandomWeight();
         }
     }
 
-    void WeightRandomizer::randomizeSome() {
+    void WeightRandomizer::randomizeSubset() {
         auto& weights = networkData.weights;
         for (int weightIndex : getWeightIndicesSubset()) {
             weights[weightIndex] = getRandomWeight();
@@ -38,7 +38,7 @@ namespace neuralnet {
     }
 
     float WeightRandomizer::getRandomWeight() {
-        std::uniform_int_distribution<float> distribution(0.f, 1.f);
+        std::uniform_real_distribution<float> distribution(0.f, 1.f);
         return distribution(rng);
     }
 

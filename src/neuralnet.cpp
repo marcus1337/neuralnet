@@ -1,18 +1,15 @@
 
 #include "neuralnet.h"
+#include "neuralnet/WeightRandomizer.h"
 
 namespace neuralnet {
 
     NeuralNet::NeuralNet(int numInputNodes, int numOutputNodes) {
-
+        WeightRandomizer(networkData).radomize();
     }
 
-    void NeuralNet::randomizeAllWeights() {
-
-    }
-
-    void NeuralNet::randomizeSomeWeights() {
-
+    void NeuralNet::randomizeWeightSubset() {
+        WeightRandomizer(networkData).randomizeSubset();
     }
 
     std::string NeuralNet::serializeToString() {

@@ -17,8 +17,8 @@ namespace neuralnet {
 
     public:
         WeightRandomizer(NetworkData& _networkData);
-        void radomizeAll();
-        void randomizeSome();
+        void radomize();
+        void randomizeSubset();
 
     };
 }

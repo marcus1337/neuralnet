@@ -14,11 +14,10 @@ namespace neuralnet {
     public:
 
         NeuralNet(int numInputNodes, int numOutputNodes);
-        void randomizeAllWeights();
-        void randomizeSomeWeights();
         std::string serializeToString();
         void deserializeFromString(std::string serializedNeuralNet);
         int predict(std::vector<float> inputValues);
+        void randomizeWeightSubset();
 
 
     };
