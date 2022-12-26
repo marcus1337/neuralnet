@@ -15,7 +15,9 @@ namespace neuralnet {
         NeuralNet(int numInputNodes, int numHiddenNodes, int numOutputNodes);
         NeuralNet(const std::string& serializedLayers);
         std::string encode();
-        int getOutput(std::vector<float> inputValues);
+        static int selectMaxOutputIndex(std::vector<float> outputValues);
+        std::vector<float> getOutput(std::vector<float> inputValues);
+        bool isValidInput(const std::vector<float>& inputValues);
         void randomizeWeightSubset();
         int getNumLayers();
         std::vector<float> getInWeights(int layerIndex);

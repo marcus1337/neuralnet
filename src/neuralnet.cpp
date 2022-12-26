@@ -34,13 +34,19 @@ namespace neuralnet {
         return layers[0];
     }
 
-    int NeuralNet::getOutput(std::vector<float> inputValues) {
-        if (inputValues.size() != inputLayer().getNumNodes())
-            return -1;
+    int NeuralNet::selectMaxOutputIndex(std::vector<float> outputValues) {
+        return std::distance(outputValues.begin(), std::max_element(outputValues.begin(), outputValues.end()));
+    }
+
+    bool NeuralNet::isValidInput(const std::vector<float>& inputValues) {
+        return inputValues.size() == inputLayer().getNumNodes();
+    }
+
+    std::vector<float> NeuralNet::getOutput(std::vector<float> inputValues) {
         for (Layer& layer : layers) {
             inputValues = layer.getOutput(inputValues);
         }
-        return std::distance(inputValues.begin(), std::max_element(inputValues.begin(), inputValues.end()));
+        return inputValues;
     }
 
     int NeuralNet::getNumLayers() {
